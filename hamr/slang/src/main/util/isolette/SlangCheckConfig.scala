@@ -64,6 +64,8 @@ Thermostat__Containers.scala
 
 SystemTestsJohn__Container.scala
 
+Regulate_Subsystem_Containers.scala
+
 */
 @datatype class Config_String(minSize: Z, maxSize: Z, attempts: Z, verbose: B, filter: String => B) {}
 @datatype class Config_Z(low: Option[Z], high: Option[Z], attempts: Z, verbose: B, filter: Z => B) {}
@@ -311,6 +313,10 @@ SystemTestsJohn__Container.scala
 @datatype class Config_runtimemonitorObservationKindType(attempts: Z, verbose: B, filter: runtimemonitor.ObservationKind.Type => B) {}
 
 @datatype class Config_system_testsjohn1SystemTestsJohn__Container(attempts: Z, verbose: B, filter: system_tests.john1.SystemTestsJohn__Container => B) {}
+
+@datatype class Config_system_testsrstRegulate_Subsystem_Inputs_Container(attempts: Z, verbose: B, filter: system_tests.rst.Regulate_Subsystem_Inputs_Container => B) {}
+
+@datatype class Config_system_testsrstRegulate_Subsystem_Outputs_Container(attempts: Z, verbose: B, filter: system_tests.rst.Regulate_Subsystem_Outputs_Container => B) {}
 
 @datatype class Config_thermostatThermostat_PreState_Container(attempts: Z, verbose: B, additiveTypeFiltering: B, typeFilter: ISZ[thermostatThermostat_PreState_Container_DataTypeId.Type], filter: thermostat.Thermostat_PreState_Container => B) {}
 

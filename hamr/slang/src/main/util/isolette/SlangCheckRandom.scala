@@ -64,6 +64,8 @@ Thermostat__Containers.scala
 
 SystemTestsJohn__Container.scala
 
+Regulate_Subsystem_Containers.scala
+
 */
 
 @msig trait RandomLibI {
@@ -6099,6 +6101,94 @@ SystemTestsJohn__Container.scala
     halt("Requirements too strict to generate")
   }
 
+  // ============= system_tests.rst.Regulate_Subsystem_Inputs_Container ===================
+
+  def get_Config_system_testsrstRegulate_Subsystem_Inputs_Container: Config_system_testsrstRegulate_Subsystem_Inputs_Container
+  def set_Config_system_testsrstRegulate_Subsystem_Inputs_Container(config: Config_system_testsrstRegulate_Subsystem_Inputs_Container): RandomLib
+
+  def nextsystem_testsrstRegulate_Subsystem_Inputs_Container(): system_tests.rst.Regulate_Subsystem_Inputs_Container = {
+    var lowerDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var upperDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var currentTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var mode: Isolette_Data_Model.Regulator_Mode.Type = nextIsolette_Data_ModelRegulator_ModeType()
+    var internalFailure: Isolette_Data_Model.Failure_Flag_impl = nextIsolette_Data_ModelFailure_Flag_impl()
+
+    var v: system_tests.rst.Regulate_Subsystem_Inputs_Container = system_tests.rst.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+
+    if(get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.attempts >= 0) {
+     for(i <- 0 to get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.attempts) {
+        if(get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.filter(v)) {
+          return v
+        }
+        if (get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.verbose) {
+          println(s"Retrying for failing value: $v")
+        }
+        lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        mode = nextIsolette_Data_ModelRegulator_ModeType()
+        internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
+        v = system_tests.rst.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+     }
+    } else {
+     while(T) {
+       if(get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.filter(v)) {
+         return v
+       }
+       if (get_Config_system_testsrstRegulate_Subsystem_Inputs_Container.verbose) {
+         println(s"Retrying for failing value: $v")
+       }
+       lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       mode = nextIsolette_Data_ModelRegulator_ModeType()
+       internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
+       v = system_tests.rst.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+     }
+    }
+
+    assert(F, "Requirements too strict to generate")
+    halt("Requirements too strict to generate")
+  }
+
+  // ============= system_tests.rst.Regulate_Subsystem_Outputs_Container ===================
+
+  def get_Config_system_testsrstRegulate_Subsystem_Outputs_Container: Config_system_testsrstRegulate_Subsystem_Outputs_Container
+  def set_Config_system_testsrstRegulate_Subsystem_Outputs_Container(config: Config_system_testsrstRegulate_Subsystem_Outputs_Container): RandomLib
+
+  def nextsystem_testsrstRegulate_Subsystem_Outputs_Container(): system_tests.rst.Regulate_Subsystem_Outputs_Container = {
+    var heat_control: Isolette_Data_Model.On_Off.Type = nextIsolette_Data_ModelOn_OffType()
+
+    var v: system_tests.rst.Regulate_Subsystem_Outputs_Container = system_tests.rst.Regulate_Subsystem_Outputs_Container(heat_control)
+
+    if(get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.attempts >= 0) {
+     for(i <- 0 to get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.attempts) {
+        if(get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.filter(v)) {
+          return v
+        }
+        if (get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.verbose) {
+          println(s"Retrying for failing value: $v")
+        }
+        heat_control = nextIsolette_Data_ModelOn_OffType()
+        v = system_tests.rst.Regulate_Subsystem_Outputs_Container(heat_control)
+     }
+    } else {
+     while(T) {
+       if(get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.filter(v)) {
+         return v
+       }
+       if (get_Config_system_testsrstRegulate_Subsystem_Outputs_Container.verbose) {
+         println(s"Retrying for failing value: $v")
+       }
+       heat_control = nextIsolette_Data_ModelOn_OffType()
+       v = system_tests.rst.Regulate_Subsystem_Outputs_Container(heat_control)
+     }
+    }
+
+    assert(F, "Requirements too strict to generate")
+    halt("Requirements too strict to generate")
+  }
+
   // ============= thermostat.Thermostat_PreState_Container ===================
 
   def get_Config_thermostatThermostat_PreState_Container: Config_thermostatThermostat_PreState_Container
@@ -7806,6 +7896,30 @@ SystemTestsJohn__Container.scala
 
   def set_Config_system_testsjohn1SystemTestsJohn__Container(config: Config_system_testsjohn1SystemTestsJohn__Container): RandomLib ={
     config_system_testsjohn1SystemTestsJohn__Container = config
+    return this
+  }
+
+  // ============= system_tests.rst.Regulate_Subsystem_Inputs_Container ===================
+  def alwaysTrue_system_testsrstRegulate_Subsystem_Inputs_Container(v: system_tests.rst.Regulate_Subsystem_Inputs_Container): B = {return T}
+
+  var config_system_testsrstRegulate_Subsystem_Inputs_Container: Config_system_testsrstRegulate_Subsystem_Inputs_Container = Config_system_testsrstRegulate_Subsystem_Inputs_Container(100, _verbose, alwaysTrue_system_testsrstRegulate_Subsystem_Inputs_Container _)
+
+  def get_Config_system_testsrstRegulate_Subsystem_Inputs_Container: Config_system_testsrstRegulate_Subsystem_Inputs_Container = {return config_system_testsrstRegulate_Subsystem_Inputs_Container}
+
+  def set_Config_system_testsrstRegulate_Subsystem_Inputs_Container(config: Config_system_testsrstRegulate_Subsystem_Inputs_Container): RandomLib ={
+    config_system_testsrstRegulate_Subsystem_Inputs_Container = config
+    return this
+  }
+
+  // ============= system_tests.rst.Regulate_Subsystem_Outputs_Container ===================
+  def alwaysTrue_system_testsrstRegulate_Subsystem_Outputs_Container(v: system_tests.rst.Regulate_Subsystem_Outputs_Container): B = {return T}
+
+  var config_system_testsrstRegulate_Subsystem_Outputs_Container: Config_system_testsrstRegulate_Subsystem_Outputs_Container = Config_system_testsrstRegulate_Subsystem_Outputs_Container(100, _verbose, alwaysTrue_system_testsrstRegulate_Subsystem_Outputs_Container _)
+
+  def get_Config_system_testsrstRegulate_Subsystem_Outputs_Container: Config_system_testsrstRegulate_Subsystem_Outputs_Container = {return config_system_testsrstRegulate_Subsystem_Outputs_Container}
+
+  def set_Config_system_testsrstRegulate_Subsystem_Outputs_Container(config: Config_system_testsrstRegulate_Subsystem_Outputs_Container): RandomLib ={
+    config_system_testsrstRegulate_Subsystem_Outputs_Container = config
     return this
   }
 

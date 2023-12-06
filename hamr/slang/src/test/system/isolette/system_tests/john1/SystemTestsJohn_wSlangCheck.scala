@@ -8,6 +8,31 @@ import org.sireum._
 
 // This file will not be overwritten so is safe to edit
 
+object SystemTestsJohn_wSlangCheck {
+  def c32(low: Option[F32], high: Option[F32], ranLib: RandomLib): Config_F32 = {
+    return ranLib.get_Config_F32(low = low, high = high)
+  }
+
+  val validRanges = SystemTestsJohn__Container_Profile.getDefaultProfile
+  validRanges.lowerDesiredTempWStatus.set_Config_F32(c32(
+    low = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_LOWER_RANGE),
+    high = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_UPPER_RANGE),
+    ranLib = SystemTestsJohn__Container_Util.freshRandomLib))
+
+  validRanges.upperDesiredTempWStatus.set_Config_F32(c32(
+    low = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_LOWER_RANGE),
+    high = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_UPPER_RANGE),
+    ranLib = SystemTestsJohn__Container_Util.freshRandomLib
+  ))
+
+  // tighten up currentTemp so that there's a better chance to get within MA's
+  // 0.5 tolerance
+  validRanges.currentTempWStatus.set_Config_F32(c32(
+    low = Some(90f),
+    high = Some(110f),
+    ranLib = SystemTestsJohn__Container_Util.freshRandomLib))
+
+}
 class SystemTestsJohn_wSlangCheck extends SystemTestsJohn {
 
   val maxTests = 100

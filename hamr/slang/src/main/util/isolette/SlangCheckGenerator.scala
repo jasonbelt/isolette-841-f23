@@ -64,6 +64,8 @@ Thermostat__Containers.scala
 
 SystemTestsJohn__Container.scala
 
+Regulate_Subsystem_Containers.scala
+
 */
 
 @record class Gen_String(param: RandomLibI) extends MJen[String] {
@@ -2410,6 +2412,44 @@ SystemTestsJohn__Container.scala
     while (T) {
 
       continue = f(param.nextsystem_testsjohn1SystemTestsJohn__Container())
+
+      if (!continue) {
+        return Jen.End
+      }
+    }
+    return continue
+  }
+
+  override def string: String = {
+    return s""
+  }
+}
+
+@record class Gen_system_testsrstRegulate_Subsystem_Inputs_Container(param: RandomLibI) extends MJen[system_tests.rst.Regulate_Subsystem_Inputs_Container] {
+  override def generate(f: system_tests.rst.Regulate_Subsystem_Inputs_Container => Jen.Action): Jen.Action = {
+    var continue = Jen.Continue
+    while (T) {
+
+      continue = f(param.nextsystem_testsrstRegulate_Subsystem_Inputs_Container())
+
+      if (!continue) {
+        return Jen.End
+      }
+    }
+    return continue
+  }
+
+  override def string: String = {
+    return s""
+  }
+}
+
+@record class Gen_system_testsrstRegulate_Subsystem_Outputs_Container(param: RandomLibI) extends MJen[system_tests.rst.Regulate_Subsystem_Outputs_Container] {
+  override def generate(f: system_tests.rst.Regulate_Subsystem_Outputs_Container => Jen.Action): Jen.Action = {
+    var continue = Jen.Continue
+    while (T) {
+
+      continue = f(param.nextsystem_testsrstRegulate_Subsystem_Outputs_Container())
 
       if (!continue) {
         return Jen.End
