@@ -52,10 +52,11 @@ val files: ISZ[String] = ISZ("../src/main/data/isolette/Isolette_Environment/Hea
                              "../src/main/data/isolette/Aux_Types.scala",
 
                              "../src/main/util/isolette/thermostat/Thermostat__Containers.scala",
-                             "../src/test/system/isolette/prop/SystemTestsJohn__Container.scala")
+  "../src/main/util/isolette/system_tests/john1/SystemTestsJohn__Container.scala")
 
 val toolargs: String = st"${(files, " ")}".render
 
 (Os.slashDir.up / "src" / "main" / "util" / "isolette").mkdirAll()
 
-proc"$sireum proyek slangcheck -p isolette -o ${Os.slashDir.up}/src/main/util/isolette ${Os.slashDir.up} $toolargs".at(Os.slashDir).console.runCheck()
+//proc"$sireum proyek slangcheck -p isolette -o ${Os.slashDir.up}/src/main/util/isolette ${Os.slashDir.up} $toolargs".at(Os.slashDir).console.runCheck()
+proc"$sireum tools slangcheck generator -p isolette -o ${Os.slashDir.up}/src/main/util/isolette $toolargs".at(Os.slashDir).console.runCheck()

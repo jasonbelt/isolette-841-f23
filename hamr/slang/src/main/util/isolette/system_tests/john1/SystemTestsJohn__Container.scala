@@ -1,5 +1,5 @@
 // #Sireum
-package isolette.prop
+package isolette.system_tests.john1
 
 import org.sireum._
 import isolette.Isolette_Data_Model._

@@ -1866,6 +1866,54 @@ SystemTestsJohn__Container.scala
     halt("Requirements too strict to generate")
   }
 
+  //=================== ISZ[B] =====================
+  def get_Config_ISZB: Config_ISZB
+  def set_Config_ISZB(config: Config_ISZB): RandomLib
+
+  def nextISZB(): ISZ[B] = {
+
+    var length: Z = gen.nextZBetween(0, get_numElement)
+    var v: ISZ[B] = ISZ()
+    for (r <- 0 until length) {
+      v = v :+ nextB()
+    }
+
+    if(get_Config_ISZB.attempts >= 0) {
+     for(i <- 0 to get_Config_ISZB.attempts) {
+        if(get_Config_ISZB.filter(v)) {
+          return v
+        }
+        if (get_Config_ISZB.verbose) {
+          println(s"Retrying for failing value: $v")
+        }
+
+        length = gen.nextZBetween(0, get_numElement)
+        v = ISZ()
+        for (r <- 0 until length) {
+           v = v :+ nextB()
+        }
+     }
+    } else {
+     while(T) {
+       if(get_Config_ISZB.filter(v)) {
+         return v
+       }
+       if (get_Config_ISZB.verbose) {
+         println(s"Retrying for failing value: $v")
+       }
+
+       length = gen.nextZBetween(0, get_numElement)
+       v = ISZ()
+       for (r <- 0 until length) {
+          v = v :+ nextB()
+       }
+     }
+    }
+
+    assert(F, "Requirements too strict to generate")
+    halt("Requirements too strict to generate")
+  }
+
   // ============= Base_Types.Bits_Payload ===================
 
   def get_Config_Base_TypesBits_Payload: Config_Base_TypesBits_Payload
@@ -6001,6 +6049,56 @@ SystemTestsJohn__Container.scala
     halt("Requirements too strict to generate")
   }
 
+  // ============= system_tests.john1.SystemTestsJohn__Container ===================
+
+  def get_Config_system_testsjohn1SystemTestsJohn__Container: Config_system_testsjohn1SystemTestsJohn__Container
+  def set_Config_system_testsjohn1SystemTestsJohn__Container(config: Config_system_testsjohn1SystemTestsJohn__Container): RandomLib
+
+  def nextsystem_testsjohn1SystemTestsJohn__Container(): system_tests.john1.SystemTestsJohn__Container = {
+    var lowerDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var upperDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var currentTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
+    var mode: Isolette_Data_Model.Regulator_Mode.Type = nextIsolette_Data_ModelRegulator_ModeType()
+    var internalFailure: Isolette_Data_Model.Failure_Flag_impl = nextIsolette_Data_ModelFailure_Flag_impl()
+
+    var v: system_tests.john1.SystemTestsJohn__Container = system_tests.john1.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+
+    if(get_Config_system_testsjohn1SystemTestsJohn__Container.attempts >= 0) {
+     for(i <- 0 to get_Config_system_testsjohn1SystemTestsJohn__Container.attempts) {
+        if(get_Config_system_testsjohn1SystemTestsJohn__Container.filter(v)) {
+          return v
+        }
+        if (get_Config_system_testsjohn1SystemTestsJohn__Container.verbose) {
+          println(s"Retrying for failing value: $v")
+        }
+        lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+        mode = nextIsolette_Data_ModelRegulator_ModeType()
+        internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
+        v = system_tests.john1.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+     }
+    } else {
+     while(T) {
+       if(get_Config_system_testsjohn1SystemTestsJohn__Container.filter(v)) {
+         return v
+       }
+       if (get_Config_system_testsjohn1SystemTestsJohn__Container.verbose) {
+         println(s"Retrying for failing value: $v")
+       }
+       lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
+       mode = nextIsolette_Data_ModelRegulator_ModeType()
+       internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
+       v = system_tests.john1.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+     }
+    }
+
+    assert(F, "Requirements too strict to generate")
+    halt("Requirements too strict to generate")
+  }
+
   // ============= thermostat.Thermostat_PreState_Container ===================
 
   def get_Config_thermostatThermostat_PreState_Container: Config_thermostatThermostat_PreState_Container
@@ -6219,67 +6317,6 @@ SystemTestsJohn__Container.scala
     halt("Requirements too strict to generate")
   }
 
-  // ============= prop.SystemTestsJohn__Container ===================
-
-  def get_Config_propSystemTestsJohn__Container: Config_propSystemTestsJohn__Container
-  def set_Config_propSystemTestsJohn__Container(config: Config_propSystemTestsJohn__Container): RandomLib
-
-  def nextpropSystemTestsJohn__Container(): prop.SystemTestsJohn__Container = {
-    var lowerDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
-    var upperDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
-    var currentTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
-    var mode: Isolette_Data_Model.Regulator_Mode.Type = nextIsolette_Data_ModelRegulator_ModeType()
-    var internalFailure: Isolette_Data_Model.Failure_Flag_impl = nextIsolette_Data_ModelFailure_Flag_impl()
-
-    var v: prop.SystemTestsJohn__Container = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
-
-    if(get_Config_propSystemTestsJohn__Container.attempts >= 0) {
-     for(i <- 0 to get_Config_propSystemTestsJohn__Container.attempts) {
-        if(get_Config_propSystemTestsJohn__Container.filter(v)) {
-          return v
-        }
-        if (get_Config_propSystemTestsJohn__Container.verbose) {
-          println(s"Retrying for failing value: $v")
-        }
-        lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-        upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-        currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-        mode = nextIsolette_Data_ModelRegulator_ModeType()
-        internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
-        v = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
-     }
-    } else {
-     while(T) {
-       if(get_Config_propSystemTestsJohn__Container.filter(v)) {
-         return v
-       }
-       if (get_Config_propSystemTestsJohn__Container.verbose) {
-         println(s"Retrying for failing value: $v")
-       }
-       lowerDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-       upperDesiredTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-       currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
-       mode = nextIsolette_Data_ModelRegulator_ModeType()
-       internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
-       v = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
-     }
-    }
-
-    assert(F, "Requirements too strict to generate")
-    halt("Requirements too strict to generate")
-  }
-
-  //=================== ISZ[B] =====================
-
-  def nextISZB(): ISZ[B] = {
-    val length: Z = gen.nextZBetween(0, get_numElement)
-    var temp: ISZ[B] = ISZ()
-    for (r <- 0 until length) {
-      temp = temp :+ nextB()
-    }
-
-    return temp
-  }
 }
 
 @record class RandomLib(val gen: org.sireum.Random.Gen) extends RandomLibI {
@@ -6666,6 +6703,17 @@ SystemTestsJohn__Container.scala
 
   def set_Config_Base_TypesString_Payload(config: Config_Base_TypesString_Payload): RandomLib ={
     config_Base_TypesString_Payload = config
+    return this
+  }
+
+  // ============= ISZ[B] ===================
+  def alwaysTrue_ISZB(v: ISZ[B]): B = {return T}
+
+  var config_ISZB: Config_ISZB = Config_ISZB(0, 20, 100, _verbose, alwaysTrue_ISZB _)
+  def get_Config_ISZB: Config_ISZB = {return config_ISZB}
+
+  def set_Config_ISZB(config: Config_ISZB): RandomLib ={
+    config_ISZB = config
     return this
   }
 
@@ -7749,6 +7797,18 @@ SystemTestsJohn__Container.scala
     return this
   }
 
+  // ============= system_tests.john1.SystemTestsJohn__Container ===================
+  def alwaysTrue_system_testsjohn1SystemTestsJohn__Container(v: system_tests.john1.SystemTestsJohn__Container): B = {return T}
+
+  var config_system_testsjohn1SystemTestsJohn__Container: Config_system_testsjohn1SystemTestsJohn__Container = Config_system_testsjohn1SystemTestsJohn__Container(100, _verbose, alwaysTrue_system_testsjohn1SystemTestsJohn__Container _)
+
+  def get_Config_system_testsjohn1SystemTestsJohn__Container: Config_system_testsjohn1SystemTestsJohn__Container = {return config_system_testsjohn1SystemTestsJohn__Container}
+
+  def set_Config_system_testsjohn1SystemTestsJohn__Container(config: Config_system_testsjohn1SystemTestsJohn__Container): RandomLib ={
+    config_system_testsjohn1SystemTestsJohn__Container = config
+    return this
+  }
+
   // ============= thermostat.Thermostat_PreState_Container ===================
   def alwaysTrue_thermostatThermostat_PreState_Container(v: thermostat.Thermostat_PreState_Container): B = {return T}
 
@@ -7794,18 +7854,6 @@ SystemTestsJohn__Container.scala
 
   def set_Config_thermostatThermostat_PostState_Container_P(config: Config_thermostatThermostat_PostState_Container_P): RandomLib ={
     config_thermostatThermostat_PostState_Container_P = config
-    return this
-  }
-
-  // ============= prop.SystemTestsJohn__Container ===================
-  def alwaysTrue_propSystemTestsJohn__Container(v: prop.SystemTestsJohn__Container): B = {return T}
-
-  var config_propSystemTestsJohn__Container: Config_propSystemTestsJohn__Container = Config_propSystemTestsJohn__Container(100, _verbose, alwaysTrue_propSystemTestsJohn__Container _)
-
-  def get_Config_propSystemTestsJohn__Container: Config_propSystemTestsJohn__Container = {return config_propSystemTestsJohn__Container}
-
-  def set_Config_propSystemTestsJohn__Container(config: Config_propSystemTestsJohn__Container): RandomLib ={
-    config_propSystemTestsJohn__Container = config
     return this
   }
 }

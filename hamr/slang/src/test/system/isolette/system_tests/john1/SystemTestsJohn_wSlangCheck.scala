@@ -1,10 +1,7 @@
-package isolette
+package isolette.system_tests.john1
 
-import art.scheduling.static._
-import art.{Art, ArtNative_Ext}
-import isolette.Isolette_Data_Model._
-import isolette.Regulate.{Manage_Heat_Source_impl_thermostat_regulate_temperature_manage_heat_source_SystemTestAPI => RegMHS, Manage_Regulator_Interface_impl_thermostat_regulate_temperature_manage_regulator_interface_SystemTestAPI => RegMRI, Manage_Regulator_Mode_impl_thermostat_regulate_temperature_manage_regulator_mode_SystemTestAPI => RegMRM}
-import isolette.prop.{GumboX_SystemTest, SystemTestsJohn_Profile_P, SystemTestsJohn__Container}
+import art.ArtNative_Ext
+import isolette.{Config_F32, InitialValues, RandomLib}
 import org.sireum.Random.Gen64
 import org.sireum.Random.Impl.Xoshiro256
 import org.sireum._

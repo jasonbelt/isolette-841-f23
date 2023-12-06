@@ -1,8 +1,9 @@
-package isolette
+package isolette.system_tests.john1
 
 import art.scheduling.static._
 import art.{Art, ArtNative_Ext}
 import isolette.Regulate.{Manage_Heat_Source_impl_thermostat_regulate_temperature_manage_heat_source_SystemTestAPI => RegMHS}
+import isolette._
 import org.sireum.Random.Gen64
 import org.sireum.Random.Impl.Xoshiro256
 import org.sireum._

@@ -128,6 +128,8 @@ SystemTestsJohn__Container.scala
 
 @datatype class Config_Base_TypesString_Payload(attempts: Z, verbose: B, filter: Base_Types.String_Payload => B) {}
 
+@datatype class Config_ISZB(minSize: Z, maxSize: Z, attempts: Z, verbose: B, filter: ISZ[B] => B) {}
+
 @datatype class Config_Base_TypesBits_Payload(attempts: Z, verbose: B, filter: Base_Types.Bits_Payload => B) {}
 
 @datatype class Config_DevicesHeat_Source_impl_heat_source_cpi_heat_controller_PreState_Container(attempts: Z, verbose: B, additiveTypeFiltering: B, typeFilter: ISZ[DevicesHeat_Source_impl_heat_source_cpi_heat_controller_PreState_Container_DataTypeId.Type], filter: Devices.Heat_Source_impl_heat_source_cpi_heat_controller_PreState_Container => B) {}
@@ -308,6 +310,8 @@ SystemTestsJohn__Container.scala
 
 @datatype class Config_runtimemonitorObservationKindType(attempts: Z, verbose: B, filter: runtimemonitor.ObservationKind.Type => B) {}
 
+@datatype class Config_system_testsjohn1SystemTestsJohn__Container(attempts: Z, verbose: B, filter: system_tests.john1.SystemTestsJohn__Container => B) {}
+
 @datatype class Config_thermostatThermostat_PreState_Container(attempts: Z, verbose: B, additiveTypeFiltering: B, typeFilter: ISZ[thermostatThermostat_PreState_Container_DataTypeId.Type], filter: thermostat.Thermostat_PreState_Container => B) {}
 
 @datatype class Config_thermostatThermostat_PreState_Container_P(attempts: Z, verbose: B, filter: thermostat.Thermostat_PreState_Container_P => B) {}
@@ -315,7 +319,5 @@ SystemTestsJohn__Container.scala
 @datatype class Config_thermostatThermostat_PostState_Container(attempts: Z, verbose: B, additiveTypeFiltering: B, typeFilter: ISZ[thermostatThermostat_PostState_Container_DataTypeId.Type], filter: thermostat.Thermostat_PostState_Container => B) {}
 
 @datatype class Config_thermostatThermostat_PostState_Container_P(attempts: Z, verbose: B, filter: thermostat.Thermostat_PostState_Container_P => B) {}
-
-@datatype class Config_propSystemTestsJohn__Container(attempts: Z, verbose: B, filter: prop.SystemTestsJohn__Container => B) {}
 
 

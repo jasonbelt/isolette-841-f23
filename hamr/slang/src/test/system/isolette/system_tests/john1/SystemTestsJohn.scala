@@ -1,17 +1,16 @@
-package isolette
+package isolette.system_tests.john1
 
-import art.{Art, ArtNative_Ext}
 import art.scheduling.static._
+import art.{Art, ArtNative_Ext}
 import isolette.Isolette_Data_Model._
 import isolette.Regulate.{Manage_Heat_Source_impl_thermostat_regulate_temperature_manage_heat_source_SystemTestAPI => RegMHS, Manage_Regulator_Interface_impl_thermostat_regulate_temperature_manage_regulator_interface_SystemTestAPI => RegMRI, Manage_Regulator_Mode_impl_thermostat_regulate_temperature_manage_regulator_mode_SystemTestAPI => RegMRM}
-import isolette.prop.{GumboX_SystemTest, SystemTestsJohn_Profile_P, SystemTestsJohn__Container}
-import org.sireum.Random.Gen64
-import org.sireum.Random.Impl.Xoshiro256
+import isolette.system_tests.john1.SystemTestsJohn__Container
+import isolette.{Isolette_Data_Model, Schedulers, StaticSchedulerCust, SystemTestSuite}
 import org.sireum._
 
 // This file will not be overwritten so is safe to edit
 
-class SystemTestsJohn extends SystemTestSuite {
+trait SystemTestsJohn extends SystemTestSuite {
 
   // note: this is overriding SystemTestSuite's 'def scheduler: Scheduler'
   //       abstract method
@@ -679,7 +678,7 @@ class SystemTestsJohn extends SystemTestSuite {
 
                                    prop: (SystemTestsJohn__Container, On_Off.Type) =>
                                      B
-                                  ): Unit = {
+                                  ): B = {
     // ====== Initialization =====
     // run the system's initialization phase
 
@@ -730,10 +729,12 @@ class SystemTestsJohn extends SystemTestSuite {
     //
     // For RegMHS component, heat source should be Off
     val api_heat_control = RegMHS.get_api_heat_control()
-    assert(prop(container, api_heat_control))
+    val ret = prop(container, api_heat_control)
 
     // gracefully take system down
     Art.finalizePhase(scheduler)
+
+    return ret
   }
 
   test("Normal Mode, No Failure - Prop Schema -- Heat Control On") {

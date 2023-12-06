@@ -675,6 +675,25 @@ SystemTestsJohn__Container.scala
   }
 }
 
+@record class Gen_ISZB(param: RandomLibI) extends MJen[ISZ[B]] {
+  override def generate(f: ISZ[B] => Jen.Action): Jen.Action = {
+    var continue = Jen.Continue
+    while (T) {
+
+      continue = f(param.nextISZB())
+
+      if (!continue) {
+        return Jen.End
+      }
+    }
+    return continue
+  }
+
+  override def string: String = {
+    return s""
+  }
+}
+
 @record class Gen_Base_TypesBits_Payload(param: RandomLibI) extends MJen[Base_Types.Bits_Payload] {
   override def generate(f: Base_Types.Bits_Payload => Jen.Action): Jen.Action = {
     var continue = Jen.Continue
@@ -2385,6 +2404,25 @@ SystemTestsJohn__Container.scala
   }
 }
 
+@record class Gen_system_testsjohn1SystemTestsJohn__Container(param: RandomLibI) extends MJen[system_tests.john1.SystemTestsJohn__Container] {
+  override def generate(f: system_tests.john1.SystemTestsJohn__Container => Jen.Action): Jen.Action = {
+    var continue = Jen.Continue
+    while (T) {
+
+      continue = f(param.nextsystem_testsjohn1SystemTestsJohn__Container())
+
+      if (!continue) {
+        return Jen.End
+      }
+    }
+    return continue
+  }
+
+  override def string: String = {
+    return s""
+  }
+}
+
 @record class Gen_thermostatThermostat_PreState_Container(param: RandomLibI) extends MJen[thermostat.Thermostat_PreState_Container] {
   override def generate(f: thermostat.Thermostat_PreState_Container => Jen.Action): Jen.Action = {
     var continue = Jen.Continue
@@ -2448,25 +2486,6 @@ SystemTestsJohn__Container.scala
     while (T) {
 
       continue = f(param.nextthermostatThermostat_PostState_Container_P())
-
-      if (!continue) {
-        return Jen.End
-      }
-    }
-    return continue
-  }
-
-  override def string: String = {
-    return s""
-  }
-}
-
-@record class Gen_propSystemTestsJohn__Container(param: RandomLibI) extends MJen[prop.SystemTestsJohn__Container] {
-  override def generate(f: prop.SystemTestsJohn__Container => Jen.Action): Jen.Action = {
-    var continue = Jen.Continue
-    while (T) {
-
-      continue = f(param.nextpropSystemTestsJohn__Container())
 
       if (!continue) {
         return Jen.End
