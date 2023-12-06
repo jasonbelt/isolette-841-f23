@@ -45,7 +45,7 @@ object GumboX_SystemTest {
     compute_CEP_T_Assm(lowerDesiredTempWStatus, upperDesiredTempWStatus)
 
 
-  def system_Pre_Container(container: SystemTestsJohn__Container): B = {
+  def system_Pre_Container(container: Regulate_Subsystem_Inputs_Container): B = {
     return compute_CEP_Pre(
       container.lowerDesiredTempWStatus,
       container.upperDesiredTempWStatus,

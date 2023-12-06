@@ -995,7 +995,7 @@ object JSON {
       ))
     }
 
-    @pure def printpropSystemTestsJohn__Container(o: prop.SystemTestsJohn__Container): ST = {
+    @pure def printpropSystemTestsJohn__Container(o: prop.Regulate_Subsystem_Inputs_Container): ST = {
       return printObject(ISZ(
         ("type", st""""prop.SystemTestsJohn__Container""""),
         ("lowerDesiredTempWStatus", printIsolette_Data_ModelTempWstatus_impl(o.lowerDesiredTempWStatus)),
@@ -2864,12 +2864,12 @@ object JSON {
       return thermostat.Thermostat_PostState_Container_P(api_monitor_status, api_alarm_control, api_heat_control, api_display_temp, api_regulator_status)
     }
 
-    def parsepropSystemTestsJohn__Container(): prop.SystemTestsJohn__Container = {
+    def parsepropSystemTestsJohn__Container(): prop.Regulate_Subsystem_Inputs_Container = {
       val r = parsepropSystemTestsJohn__ContainerT(F)
       return r
     }
 
-    def parsepropSystemTestsJohn__ContainerT(typeParsed: B): prop.SystemTestsJohn__Container = {
+    def parsepropSystemTestsJohn__ContainerT(typeParsed: B): prop.Regulate_Subsystem_Inputs_Container = {
       if (!typeParsed) {
         parser.parseObjectType("prop.SystemTestsJohn__Container")
       }
@@ -2888,7 +2888,7 @@ object JSON {
       parser.parseObjectKey("internalFailure")
       val internalFailure = parseIsolette_Data_ModelFailure_Flag_impl()
       parser.parseObjectNext()
-      return prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+      return prop.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
     }
 
     def eof(): B = {
@@ -4762,7 +4762,7 @@ object JSON {
     return r
   }
 
-  def frompropSystemTestsJohn__Container(o: prop.SystemTestsJohn__Container, isCompact: B): String = {
+  def frompropSystemTestsJohn__Container(o: prop.Regulate_Subsystem_Inputs_Container, isCompact: B): String = {
     val st = Printer.printpropSystemTestsJohn__Container(o)
     if (isCompact) {
       return st.renderCompact
@@ -4771,8 +4771,8 @@ object JSON {
     }
   }
 
-  def topropSystemTestsJohn__Container(s: String): Either[prop.SystemTestsJohn__Container, Json.ErrorMsg] = {
-    def fpropSystemTestsJohn__Container(parser: Parser): prop.SystemTestsJohn__Container = {
+  def topropSystemTestsJohn__Container(s: String): Either[prop.Regulate_Subsystem_Inputs_Container, Json.ErrorMsg] = {
+    def fpropSystemTestsJohn__Container(parser: Parser): prop.Regulate_Subsystem_Inputs_Container = {
       val r = parser.parsepropSystemTestsJohn__Container()
       return r
     }

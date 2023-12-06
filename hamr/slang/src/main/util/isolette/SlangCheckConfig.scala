@@ -316,6 +316,6 @@ SystemTestsJohn__Container.scala
 
 @datatype class Config_thermostatThermostat_PostState_Container_P(attempts: Z, verbose: B, filter: thermostat.Thermostat_PostState_Container_P => B) {}
 
-@datatype class Config_propSystemTestsJohn__Container(attempts: Z, verbose: B, filter: prop.SystemTestsJohn__Container => B) {}
+@datatype class Config_propSystemTestsJohn__Container(attempts: Z, verbose: B, filter: prop.Regulate_Subsystem_Inputs_Container => B) {}
 
 

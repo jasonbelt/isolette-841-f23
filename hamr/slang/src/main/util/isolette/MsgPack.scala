@@ -920,7 +920,7 @@ object MsgPack {
       writeIsolette_Data_ModelStatusType(o.api_regulator_status)
     }
 
-    def writepropSystemTestsJohn__Container(o: prop.SystemTestsJohn__Container): Unit = {
+    def writepropSystemTestsJohn__Container(o: prop.Regulate_Subsystem_Inputs_Container): Unit = {
       writer.writeZ(Constants.propSystemTestsJohn__Container)
       writeIsolette_Data_ModelTempWstatus_impl(o.lowerDesiredTempWStatus)
       writeIsolette_Data_ModelTempWstatus_impl(o.upperDesiredTempWStatus)
@@ -2470,12 +2470,12 @@ object MsgPack {
       return thermostat.Thermostat_PostState_Container_P(api_monitor_status, api_alarm_control, api_heat_control, api_display_temp, api_regulator_status)
     }
 
-    def readpropSystemTestsJohn__Container(): prop.SystemTestsJohn__Container = {
+    def readpropSystemTestsJohn__Container(): prop.Regulate_Subsystem_Inputs_Container = {
       val r = readpropSystemTestsJohn__ContainerT(F)
       return r
     }
 
-    def readpropSystemTestsJohn__ContainerT(typeParsed: B): prop.SystemTestsJohn__Container = {
+    def readpropSystemTestsJohn__ContainerT(typeParsed: B): prop.Regulate_Subsystem_Inputs_Container = {
       if (!typeParsed) {
         reader.expectZ(Constants.propSystemTestsJohn__Container)
       }
@@ -2484,7 +2484,7 @@ object MsgPack {
       val currentTempWStatus = readIsolette_Data_ModelTempWstatus_impl()
       val mode = readIsolette_Data_ModelRegulator_ModeType()
       val internalFailure = readIsolette_Data_ModelFailure_Flag_impl()
-      return prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+      return prop.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
     }
 
   }
@@ -4044,14 +4044,14 @@ object MsgPack {
     return r
   }
 
-  def frompropSystemTestsJohn__Container(o: prop.SystemTestsJohn__Container, pooling: B): ISZ[U8] = {
+  def frompropSystemTestsJohn__Container(o: prop.Regulate_Subsystem_Inputs_Container, pooling: B): ISZ[U8] = {
     val w = Writer.Default(MessagePack.writer(pooling))
     w.writepropSystemTestsJohn__Container(o)
     return w.result
   }
 
-  def topropSystemTestsJohn__Container(data: ISZ[U8]): Either[prop.SystemTestsJohn__Container, MessagePack.ErrorMsg] = {
-    def fpropSystemTestsJohn__Container(reader: Reader): prop.SystemTestsJohn__Container = {
+  def topropSystemTestsJohn__Container(data: ISZ[U8]): Either[prop.Regulate_Subsystem_Inputs_Container, MessagePack.ErrorMsg] = {
+    def fpropSystemTestsJohn__Container(reader: Reader): prop.Regulate_Subsystem_Inputs_Container = {
       val r = reader.readpropSystemTestsJohn__Container()
       return r
     }

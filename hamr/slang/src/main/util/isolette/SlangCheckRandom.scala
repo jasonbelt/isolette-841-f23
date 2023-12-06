@@ -6224,14 +6224,14 @@ SystemTestsJohn__Container.scala
   def get_Config_propSystemTestsJohn__Container: Config_propSystemTestsJohn__Container
   def set_Config_propSystemTestsJohn__Container(config: Config_propSystemTestsJohn__Container): RandomLib
 
-  def nextpropSystemTestsJohn__Container(): prop.SystemTestsJohn__Container = {
+  def nextpropSystemTestsJohn__Container(): prop.Regulate_Subsystem_Inputs_Container = {
     var lowerDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
     var upperDesiredTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
     var currentTempWStatus: Isolette_Data_Model.TempWstatus_impl = nextIsolette_Data_ModelTempWstatus_impl()
     var mode: Isolette_Data_Model.Regulator_Mode.Type = nextIsolette_Data_ModelRegulator_ModeType()
     var internalFailure: Isolette_Data_Model.Failure_Flag_impl = nextIsolette_Data_ModelFailure_Flag_impl()
 
-    var v: prop.SystemTestsJohn__Container = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+    var v: prop.Regulate_Subsystem_Inputs_Container = prop.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
 
     if(get_Config_propSystemTestsJohn__Container.attempts >= 0) {
      for(i <- 0 to get_Config_propSystemTestsJohn__Container.attempts) {
@@ -6246,7 +6246,7 @@ SystemTestsJohn__Container.scala
         currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
         mode = nextIsolette_Data_ModelRegulator_ModeType()
         internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
-        v = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+        v = prop.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
      }
     } else {
      while(T) {
@@ -6261,7 +6261,7 @@ SystemTestsJohn__Container.scala
        currentTempWStatus = nextIsolette_Data_ModelTempWstatus_impl()
        mode = nextIsolette_Data_ModelRegulator_ModeType()
        internalFailure = nextIsolette_Data_ModelFailure_Flag_impl()
-       v = prop.SystemTestsJohn__Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
+       v = prop.Regulate_Subsystem_Inputs_Container(lowerDesiredTempWStatus, upperDesiredTempWStatus, currentTempWStatus, mode, internalFailure)
      }
     }
 
@@ -7798,7 +7798,7 @@ SystemTestsJohn__Container.scala
   }
 
   // ============= prop.SystemTestsJohn__Container ===================
-  def alwaysTrue_propSystemTestsJohn__Container(v: prop.SystemTestsJohn__Container): B = {return T}
+  def alwaysTrue_propSystemTestsJohn__Container(v: prop.Regulate_Subsystem_Inputs_Container): B = {return T}
 
   var config_propSystemTestsJohn__Container: Config_propSystemTestsJohn__Container = Config_propSystemTestsJohn__Container(100, _verbose, alwaysTrue_propSystemTestsJohn__Container _)
 

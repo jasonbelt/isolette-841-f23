@@ -2461,8 +2461,8 @@ SystemTestsJohn__Container.scala
   }
 }
 
-@record class Gen_propSystemTestsJohn__Container(param: RandomLibI) extends MJen[prop.SystemTestsJohn__Container] {
-  override def generate(f: prop.SystemTestsJohn__Container => Jen.Action): Jen.Action = {
+@record class Gen_propSystemTestsJohn__Container(param: RandomLibI) extends MJen[prop.Regulate_Subsystem_Inputs_Container] {
+  override def generate(f: prop.Regulate_Subsystem_Inputs_Container => Jen.Action): Jen.Action = {
     var continue = Jen.Continue
     while (T) {
 

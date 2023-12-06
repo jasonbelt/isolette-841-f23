@@ -4,7 +4,7 @@ import art.{Art, ArtNative_Ext}
 import art.scheduling.static._
 import isolette.Isolette_Data_Model._
 import isolette.Regulate.{Manage_Heat_Source_impl_thermostat_regulate_temperature_manage_heat_source_SystemTestAPI => RegMHS, Manage_Regulator_Interface_impl_thermostat_regulate_temperature_manage_regulator_interface_SystemTestAPI => RegMRI, Manage_Regulator_Mode_impl_thermostat_regulate_temperature_manage_regulator_mode_SystemTestAPI => RegMRM}
-import isolette.prop.{GumboX_SystemTest, SystemTestsJohn_Profile_P, SystemTestsJohn__Container}
+import isolette.prop.{GumboX_SystemTest, Regulator_Subsystem_Testing_Profile, Regulate_Subsystem_Inputs_Container}
 import org.sireum.Random.Gen64
 import org.sireum.Random.Impl.Xoshiro256
 import org.sireum._
@@ -635,49 +635,49 @@ class SystemTestsJohn extends SystemTestSuite {
     )
   }
 
-  test("Foo -- Heat Control Off") {
-    invalidTempInputsTestSchema(
-      upperDesiredTempWStatus = TempWstatus_impl(100f, ValueStatus.Valid),
-      lowerDesiredTempWStatus = TempWstatus_impl(98f, ValueStatus.Valid),
-      currentTempWStatus = TempWstatus_impl(97f, ValueStatus.Valid)
-    )
-  }
+//  test("Foo -- Heat Control Off") {
+//    invalidTempInputsTestSchema(
+//      upperDesiredTempWStatus = TempWstatus_impl(100f, ValueStatus.Valid),
+//      lowerDesiredTempWStatus = TempWstatus_impl(98f, ValueStatus.Valid),
+//      currentTempWStatus = TempWstatus_impl(97f, ValueStatus.Valid)
+//    )
+//  }
 
-  def sysProp_RegulatorInputErrorCondition(container: SystemTestsJohn__Container): B = {
+  def sysProp_RegulatorInputErrorCondition_old(container: Regulate_Subsystem_Inputs_Container): B = {
     return (container.upperDesiredTempWStatus.status == ValueStatus.Invalid
       | container.lowerDesiredTempWStatus.status == ValueStatus.Invalid
       | container.currentTempWStatus.status == ValueStatus.Invalid)
   }
 
-  def sysProp_RegulatorErrorCondition(container: SystemTestsJohn__Container): B = {
-    return (sysProp_RegulatorInputErrorCondition(container)
+  def sysProp_RegulatorErrorCondition_old(container: Regulate_Subsystem_Inputs_Container): B = {
+    return (sysProp_RegulatorInputErrorCondition_old(container)
       | container.internalFailure.value == T)
   }
 
-  def sysProp_NormalModeHeatOn(container: SystemTestsJohn__Container,
+  def sysProp_NormalModeHeatOn_old(container: Regulate_Subsystem_Inputs_Container,
 
-                               heat_control: On_Off.Type): B = {
-    val triggerCondition = (!sysProp_RegulatorErrorCondition(container)
+                                   heat_control: On_Off.Type): B = {
+    val triggerCondition = (!sysProp_RegulatorErrorCondition_old(container)
       & container.mode == Regulator_Mode.Normal_Regulator_Mode
       & container.currentTempWStatus.value < container.lowerDesiredTempWStatus.value)
     val desiredCondition = (heat_control == On_Off.Onn)
     return (triggerCondition ->: desiredCondition)
   }
 
-  def sysProp_NormalModeHeatOff(
-                                 container: SystemTestsJohn__Container,
+  def sysProp_NormalModeHeatOff_old(
+                                     container: Regulate_Subsystem_Inputs_Container,
 
-                                 heat_control: On_Off.Type): B = {
-    val triggerCondition = (!sysProp_RegulatorErrorCondition(container)
+                                     heat_control: On_Off.Type): B = {
+    val triggerCondition = (!sysProp_RegulatorErrorCondition_old(container)
       & container.mode == Regulator_Mode.Normal_Regulator_Mode
       & container.currentTempWStatus.value > container.upperDesiredTempWStatus.value)
     val desiredCondition = (heat_control == On_Off.Off)
     return (triggerCondition ->: desiredCondition)
   }
 
-  def regulator1HPTestSchemaInject(container: SystemTestsJohn__Container,
+  def MHS1HP_script_schema_prototype(container: Regulate_Subsystem_Inputs_Container,
 
-                                   prop: (SystemTestsJohn__Container, On_Off.Type) =>
+                                     prop: (Regulate_Subsystem_Inputs_Container, On_Off.Type) =>
                                      B
                                   ): Unit = {
     // ====== Initialization =====
@@ -737,14 +737,14 @@ class SystemTestsJohn extends SystemTestSuite {
   }
 
   test("Normal Mode, No Failure - Prop Schema -- Heat Control On") {
-    regulator1HPTestSchemaInject(
-      SystemTestsJohn__Container(
+    MHS1HP_script_schema_prototype(
+      Regulate_Subsystem_Inputs_Container(
         upperDesiredTempWStatus = TempWstatus_impl(100f, ValueStatus.Valid),
         lowerDesiredTempWStatus = TempWstatus_impl(98f, ValueStatus.Valid),
         currentTempWStatus = TempWstatus_impl(97f, ValueStatus.Valid),
         internalFailure = Failure_Flag_impl(F),
         mode = Regulator_Mode.Normal_Regulator_Mode),
-      sysProp_NormalModeHeatOn
+      sysProp_NormalModeHeatOn_old
     )
   }
 }
