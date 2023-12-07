@@ -10,41 +10,6 @@ import org.sireum._
 
 // This file will not be overwritten so is safe to edit
 
-object SystemTestsJohn {
-  def sysProp_RegulatorInputErrorCondition(container: SystemTestsJohn__Container): B = {
-    return (container.upperDesiredTempWStatus.status == ValueStatus.Invalid
-      | container.lowerDesiredTempWStatus.status == ValueStatus.Invalid
-      | container.currentTempWStatus.status == ValueStatus.Invalid)
-  }
-
-  def sysProp_RegulatorErrorCondition(container: SystemTestsJohn__Container): B = {
-    return (sysProp_RegulatorInputErrorCondition(container)
-      | container.internalFailure.value == T)
-  }
-
-  def sysProp_NormalModeHeatOn(container: SystemTestsJohn__Container,
-
-                               heat_control: On_Off.Type): B = {
-    println(container)
-    val triggerCondition = (!sysProp_RegulatorErrorCondition(container)
-      & container.mode == Regulator_Mode.Normal_Regulator_Mode
-      & container.currentTempWStatus.value < container.lowerDesiredTempWStatus.value)
-    val desiredCondition = (heat_control != On_Off.Onn)
-    return (triggerCondition ->: desiredCondition)
-  }
-
-  def sysProp_NormalModeHeatOff(
-                                 container: SystemTestsJohn__Container,
-
-                                 heat_control: On_Off.Type): B = {
-    val triggerCondition = (!sysProp_RegulatorErrorCondition(container)
-      & container.mode == Regulator_Mode.Normal_Regulator_Mode
-      & container.currentTempWStatus.value > container.upperDesiredTempWStatus.value)
-    val desiredCondition = (heat_control == On_Off.Off)
-    return (triggerCondition ->: desiredCondition)
-  }
-}
-
 trait SystemTestsJohn extends SystemTestSuite {
 
   // note: this is overriding SystemTestSuite's 'def scheduler: Scheduler'
@@ -773,7 +738,8 @@ trait SystemTestsJohn extends SystemTestSuite {
   }
 
   test("Normal Mode, No Failure - Prop Schema -- Heat Control On") {
-    regulator1HPTestSchemaInject(
+    val result =
+      regulator1HPTestSchemaInject(
       SystemTestsJohn__Container(
         upperDesiredTempWStatus = TempWstatus_impl(100f, ValueStatus.Valid),
         lowerDesiredTempWStatus = TempWstatus_impl(98f, ValueStatus.Valid),
@@ -782,5 +748,6 @@ trait SystemTestsJohn extends SystemTestSuite {
         mode = Regulator_Mode.Normal_Regulator_Mode),
       sysProp_NormalModeHeatOn
     )
+    assert(result)
   }
 }

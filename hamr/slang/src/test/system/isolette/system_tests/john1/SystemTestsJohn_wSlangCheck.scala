@@ -33,6 +33,7 @@ object SystemTestsJohn_wSlangCheck {
     ranLib = SystemTestsJohn__Container_Util.freshRandomLib))
 
 }
+
 class SystemTestsJohn_wSlangCheck extends SystemTestsJohn {
 
   val maxTests = 100
@@ -94,30 +95,30 @@ class SystemTestsJohn_wSlangCheck extends SystemTestsJohn {
     )
   }
 
+  def c32(low: Option[F32], high: Option[F32], ranLib: RandomLib): Config_F32 = {
+    return ranLib.get_Config_F32(low = low, high = high)
+  }
+
+  val validRanges = getDefaultProfile
+  validRanges.lowerDesiredTempWStatus.set_Config_F32(c32(
+    low = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_LOWER_RANGE),
+    high = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_UPPER_RANGE),
+    ranLib = freshRandomLib))
+
+  validRanges.upperDesiredTempWStatus.set_Config_F32(c32(
+    low = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_LOWER_RANGE),
+    high = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_UPPER_RANGE),
+    ranLib = freshRandomLib
+  ))
+
+  // tighten up currentTemp so that there's a better chance to get within MA's
+  // 0.5 tolerance
+  validRanges.currentTempWStatus.set_Config_F32(c32(
+    low = Some(90f),
+    high = Some(110f),
+    ranLib = freshRandomLib))
+
   def getProfiles: MSZ[SystemTestsJohn_Profile_P] = {
-    def c32(low: Option[F32], high: Option[F32], ranLib: RandomLib): Config_F32 = {
-      return ranLib.get_Config_F32(low = low, high = high)
-    }
-
-    val validRanges = getDefaultProfile
-    validRanges.lowerDesiredTempWStatus.set_Config_F32(c32(
-      low = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_LOWER_RANGE),
-      high = Some(InitialValues.LOWER_DESIRED_TEMPERATURE_UPPER_RANGE),
-      ranLib = freshRandomLib))
-
-    validRanges.upperDesiredTempWStatus.set_Config_F32(c32(
-      low = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_LOWER_RANGE),
-      high = Some(InitialValues.UPPER_DESIRED_TEMPERATURE_UPPER_RANGE),
-      ranLib = freshRandomLib
-    ))
-
-    // tighten up currentTemp so that there's a better chance to get within MA's
-    // 0.5 tolerance
-    validRanges.currentTempWStatus.set_Config_F32(c32(
-      low = Some(90f),
-      high = Some(110f),
-      ranLib = freshRandomLib))
-
     //return MSZ(getDefaultProfile)
     return MSZ(validRanges)
   }
