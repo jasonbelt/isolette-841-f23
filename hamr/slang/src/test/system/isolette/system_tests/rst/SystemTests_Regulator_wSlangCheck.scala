@@ -7,9 +7,6 @@ import isolette.Isolette_Data_Model._
 import isolette.Regulate.{Manage_Heat_Source_impl_thermostat_regulate_temperature_manage_heat_source_SystemTestAPI => RegMHS, Manage_Regulator_Interface_impl_thermostat_regulate_temperature_manage_regulator_interface_SystemTestAPI => RegMRI, Manage_Regulator_Mode_impl_thermostat_regulate_temperature_manage_regulator_mode_SystemTestAPI => RegMRM}
 import isolette.{Config_F32, InitialValues, RandomLib, Schedulers, StaticSchedulerCust, SystemTestSuite}
 
-
-// This file will not be overwritten so is safe to edit
-
 class SystemTests_Regulator_wSlangCheck
   extends Regulate_Subsystem_Inputs_Container_SlangCheck {
 
